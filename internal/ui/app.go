@@ -3,13 +3,16 @@ package ui
 import (
 	"log"
 
+	"image/color"
+
 	"gioui.org/app"
 	"gioui.org/layout"
 	"gioui.org/op"
+	"gioui.org/op/paint"
 	"gioui.org/widget"
 	"gioui.org/widget/material"
-  "image/color"
-  "gioui.org/op/paint"
+	"github.com/ToffaKrtek/Ninjify/internal/ui/components"
+	// "github.com/ToffaKrtek/Ninjify/internal/ui/components/buttons"
 )
 
 type (
@@ -38,7 +41,7 @@ func Start() {
 }
 
 func run(window *app.Window,  state *AppState) error {
-  // theme := material.NewTheme()
+  theme := material.NewTheme()
   var ops op.Ops
   for {
     switch e := window.Event().(type) {
@@ -54,10 +57,13 @@ func run(window *app.Window,  state *AppState) error {
       //
       //   e.Frame(gtx.Ops)
       case app.FrameEvent:
-        gtx := app.NewContext(&ops, e)
-        // Обновляем окно
-        layoutUI(gtx, state)
-    e.Frame(gtx.Ops)
+        // buttons.SetSympleBtn(theme, &ops, e)
+        components.SetMainComponent(theme, &ops, e)
+        // gtx := app.NewContext(&ops, e)
+        // // Обновляем окно
+        // layoutUI(gtx, state)
+        // e.Frame(gtx.Ops)
+        window.Invalidate()
 		}
   }
 }
