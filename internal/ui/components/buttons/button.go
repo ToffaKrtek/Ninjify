@@ -13,13 +13,13 @@ type Button struct {
 }
 
 func NewButton(th *material.Theme, label string) *Button {
-  return &Button{
-    Widget: new(widget.Clickable),
-    Theme: th,
-    Label: label,
-  }
+	return &Button{
+		Widget: new(widget.Clickable),
+		Theme:  th,
+		Label:  label,
+	}
 }
 
 func (b *Button) Layout(gtx layout.Context) layout.Dimensions {
-  return material.Button(b.Theme, b.Widget, b.Label).Layout(gtx)
+	return material.Button(b.Theme, b.Widget, b.Label).Layout(gtx)
 }

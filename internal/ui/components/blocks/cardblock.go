@@ -6,17 +6,17 @@ import (
 )
 
 type CardBlock struct {
-  Title string
-  Children []layout.FlexChild
+	Title    string
+	Children []layout.FlexChild
 }
 
 func (b *CardBlock) Layout(th *material.Theme, gtx layout.Context) layout.Dimensions {
-  return layout.Flex{Axis: layout.Vertical}.Layout(gtx,
-    layout.Rigid(func(gtx layout.Context) layout.Dimensions {
-      return material.H6(th, b.Title).Layout(gtx)
-    }),
-    layout.Rigid(func(gtx layout.Context) layout.Dimensions {
-      return layout.Flex{Axis: layout.Vertical}.Layout(gtx, b.Children...)
-    }),
-  )
+	return layout.Flex{Axis: layout.Vertical}.Layout(gtx,
+		layout.Rigid(func(gtx layout.Context) layout.Dimensions {
+			return material.H6(th, b.Title).Layout(gtx)
+		}),
+		layout.Rigid(func(gtx layout.Context) layout.Dimensions {
+			return layout.Flex{Axis: layout.Vertical}.Layout(gtx, b.Children...)
+		}),
+	)
 }
